@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,47 +8,39 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
-  firstName String
-  lastName String
-  phoneNumber String @db.Text
-  email String? @db.Text
-
+  id          String        @id @default(uuid())
+  firstName   String
+  lastName    String
+  phoneNumber String
+  email       String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
   reservation Reservation[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model Restaurant {
-  id String @id @default(uuid())
-  name String
-  address String
-  gracePeriod Int @default(0)
-
+  id          String        @id @default(uuid())
+  name        String
+  address     String
+  gracePeriod Int           @default(0)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
   reservation Reservation[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
 }
 
-model Reservation{
-  id String @id @default(uuid())
+model Reservation {
+  id              String     @id @default(uuid())
   reservationTime DateTime
-  adultCount Int @default(1)
-  childCount Int?
-  isConfirmed Boolean @default(false)
-  isCancelled Boolean @default(false)
-
-  userId String
-  profile User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  restaurantId String
-  restaurant Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  adultCount      Int        @default(1)
+  childCount      Int?
+  isConfirmed     Boolean    @default(false)
+  isCancelled     Boolean    @default(false)
+  userId          String
+  restaurantId    String
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  restaurant      Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  profile         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([restaurantId])
