@@ -1,7 +1,6 @@
 // "use client"
 
 import { db } from '@/app/lib/db';
-import { Reservation, Restaurant, User } from '@prisma/client';
 import { format, getDay } from 'date-fns';
 import { Check } from 'lucide-react';
 import { redirect } from 'next/navigation';
@@ -11,11 +10,6 @@ import axios from 'axios';
 
 //Reservation Props
 
-interface ConfirmationProps {
-  reservation: Reservation;
-  restaurant: Restaurant;
-  user: User;
-}
 
 export const Confirmation = async() => {
   // const [isLoading, setIsLoading] = useState(false);
