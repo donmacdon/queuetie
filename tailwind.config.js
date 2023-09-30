@@ -73,9 +73,11 @@ module.exports = {
     },
   },
   daisyui: {
-    themes: [
-      "autumn",
-    ]
+    themes: ['autumn'],
   },
-  plugins: [require('daisyui'), require('tailwindcss-animate')],
+  plugins: [
+    require('tailwindcss-animate'),
+    require('@tailwindcss/typography'),
+    require('daisyui'),
+  ],
 };
