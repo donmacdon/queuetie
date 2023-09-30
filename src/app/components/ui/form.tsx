@@ -1,7 +1,7 @@
 export const Form = () => {
   return (
     <>
-      <div className="container mx-auto pb-5 md:max-l:flex">
+      <div className="container mx-auto pb-5 md:max-l:flex sm:max-sm:flex">
         <div className="card shadow-xl">
           <div className="card-body">
             <article className="prose max-w-none">

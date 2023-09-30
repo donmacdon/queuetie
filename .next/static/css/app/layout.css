@@ -2783,6 +2783,15 @@ body {
     margin-bottom: 0;
   }
 }
+@media (min-width: 640px) {
+
+  @media not all and (min-width: 640px) {
+
+    .sm\:max-sm\:flex {
+      display: flex;
+    }
+  }
+}
 @media (min-width: 768px) {
 
   @media not all and (min-width: 1280px) {
