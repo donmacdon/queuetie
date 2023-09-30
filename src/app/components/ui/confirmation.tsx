@@ -26,7 +26,7 @@ export const Confirmation = () => {
         </div>
         <div className="card-actions flex flex-col justify-center items-center flex-1 mt-4 mb-4">
           <button className="flex-grow flex w-full btn btn-primary"><Check />Confirm</button>
-          <button className="flex-grow flex w-full btn btn-neutral">Cancel</button>
+          <button className="flex-grow flex w-full btn">Cancel</button>
         </div>
         <p className="text-xs">To hold your table please press "<span>Confirm</span>", and your seat will be held for {seatHoldTime} minutes.</p>
       </div>
