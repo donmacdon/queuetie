@@ -1,27 +1,36 @@
-// "use client"
+"use client"
 
 import { db } from '@/app/lib/db';
 import { format, getDay } from 'date-fns';
 import { Check } from 'lucide-react';
 import { redirect } from 'next/navigation';
 import axios from 'axios';
-// import { useRouter } from "next/navigation";
-// import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 //Reservation Props
+interface ConfirmationProps {
+  restaurantId: string;
+  reservationId: string;
+  reservationTime: Date;
+  adultCount: number;
+  childCount: number | null;
+  gracePeriod: number;
+}
 
 
-export const Confirmation = async() => {
-  // const [isLoading, setIsLoading] = useState(false);
-  // const router = useRouter();
+export const Confirmation = ({
+  restaurantId,
+  reservationId,
+  reservationTime,
+  adultCount,
+  childCount,
+  gracePeriod
+}:ConfirmationProps ) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
-  const data = await db.reservation.findFirst({
-    where: {
-      id: '1cfd3623-b4ba-450c-9884-89d906095688',
-    },include: {
-      restaurant: true,
-    }
-  });
+  
 
   const reservationDayString = [
     'Sunday',
@@ -33,28 +42,38 @@ export const Confirmation = async() => {
     'Saturday',
   ];
 
-  if (!data) {
-    return redirect("/");
-  }
-
-  const reservationDateTime = format(data?.reservationTime, 'yyyy/MM/dd HH:mm');
-  const reservationDay = getDay(data?.reservationTime);
-  const numberOfAdults = data?.adultCount;
-  const numberOfChildren = data?.childCount;
-  const seatHoldTime = data?.restaurant.gracePeriod;
+  const reservationDateTime = format(reservationTime, 'yyyy/MM/dd HH:mm');
+  const reservationDay = getDay(reservationTime);
+  const numberOfAdults = adultCount;
+  const numberOfChildren = childCount;
+  const seatHoldTime = gracePeriod;
 
   const onConfirm = async () => {
     try{
-        // setIsLoading(true);
+        setIsLoading(true);
 
-        await axios.patch(`/api/reservation/asdasd/confirm`);
+        await axios.patch(`/api/restaurant/${restaurantId}/reservation/${reservationId}/confirm`);
         
-        // router.refresh();
-        // router.push("/");
+        router.refresh();
+        router.push("/");
     } catch (error) {
         console.log(error);
     } finally {
-        // setIsLoading(false);
+        setIsLoading(false);
+    }
+  }
+  const onCancel = async () => {
+      try{
+          setIsLoading(true);
+  
+          await axios.patch(`/api/restaurant/${restaurantId}/reservation/${reservationId}/cancel`);
+          
+          router.refresh();
+          router.push("/");
+      } catch (error) {
+          console.log(error);
+      } finally {
+          setIsLoading(false);
     }
 }
 
@@ -76,11 +95,11 @@ export const Confirmation = async() => {
             {numberOfChildren && <p>{numberOfChildren} Children</p>}
           </div>
           <div className="card-actions flex flex-col justify-center items-center flex-1 mt-4 mb-4">
-            <button className="flex-grow flex w-full btn btn-primary">
+            <button disabled={isLoading} onClick={onConfirm} className="flex-grow flex w-full btn btn-primary">
               <Check />
               Confirm
             </button>
-            <button className="flex-grow flex w-full btn">Cancel</button>
+            <button disabled={isLoading} onClick={onCancel} className="flex-grow flex w-full btn">Cancel</button>
           </div>
           <p className="text-xs">
             To hold your table please press "<span>Confirm</span>", and your

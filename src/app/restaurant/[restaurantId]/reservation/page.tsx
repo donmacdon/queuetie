@@ -1,13 +1,13 @@
 import { Confirmation } from "@/app/components/ui/confirmation";
 import { Form } from "@/app/components/ui/form";
+import { db } from "@/app/lib/db";
 
-const ReservationPage = () => {
-  return ( 
-    <>
+const ReservationPage = async() => {
+
+    return (
       <Form />
-      <Confirmation />
-    </>
-   );
+    )
+ 
 }
  
 export default ReservationPage;
