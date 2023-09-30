@@ -169,7 +169,7 @@
 /******/ 		// This function allow to reference all chunks
 /******/ 		__webpack_require__.miniCssF = function(chunkId) {
 /******/ 			// return url for filenames based on template
-/******/ 			return "static/css/" + chunkId + ".css";
+/******/ 			return undefined;
 /******/ 		};
 /******/ 	}();
 /******/ 	
@@ -180,7 +180,11 @@
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	!function() {
+<<<<<<< HEAD
 /******/ 		__webpack_require__.h = function() { return "c102dfb913625fd7"; }
+=======
+/******/ 		__webpack_require__.h = function() { return "01ed726e1c858c76"; }
+>>>>>>> 8194301 (prisma client)
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
