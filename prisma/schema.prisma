@@ -38,7 +38,7 @@ model Restaurant {
 
 model Reservation{
   id String @id @default(uuid())
-  reservationTime DateTime
+  reservationTime DateTime 
   adultCount Int @default(1)
   childCount Int?
   isConfirmed Boolean @default(false)
