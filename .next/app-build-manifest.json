@@ -1,28 +1,20 @@
 {
   "pages": {
-    "/restaurant/[restaurantId]/reservation/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/restaurant/[restaurantId]/reservation/page.js"
-    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
-<<<<<<< HEAD
     ],
     "/restaurant/[restaurantId]/reservation/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/restaurant/[restaurantId]/reservation/page.js"
     ],
-    "/restaurant/[restaurantId]/page": [
+    "/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/restaurant/[restaurantId]/page.js"
-=======
->>>>>>> refs/remotes/origin/main
+      "static/chunks/app/not-found.js"
     ]
   }
 }
