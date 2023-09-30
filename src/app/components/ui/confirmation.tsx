@@ -23,7 +23,7 @@ export const Confirmation = () => {
 
   return (
     <>
-      <div className="container mx-auto max-w-auto">
+      <div className="container mx-auto">
         <div className="card w-96 bg-base-100 shadow-xl">
           <div className="card-body">
             <h2 className="card-title flex flex-1 items-center justify-center">
