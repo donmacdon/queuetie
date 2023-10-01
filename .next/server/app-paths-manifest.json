@@ -1,6 +1,10 @@
 {
+<<<<<<< HEAD
   "/page": "app/page.js",
   "/restaurant/page": "app/restaurant/page.js",
   "/restaurant/[restaurantId]/reservation/page": "app/restaurant/[restaurantId]/reservation/page.js",
   "/restaurant/[restaurantId]/reservation/[reservationId]/page": "app/restaurant/[restaurantId]/reservation/[reservationId]/page.js"
+=======
+  "/restaurant/[restaurantId]/reservation/page": "app/restaurant/[restaurantId]/reservation/page.js"
+>>>>>>> refs/remotes/origin/main
 }

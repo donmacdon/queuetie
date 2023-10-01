@@ -6,9 +6,10 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/restaurant/[restaurantId]/reservation/[reservationId]/page": [
+    "/restaurant/[restaurantId]/reservation/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+<<<<<<< HEAD
       "static/chunks/app/restaurant/[restaurantId]/reservation/[reservationId]/page.js"
     ],
     "/page": [
@@ -34,6 +35,8 @@
     "/restaurant/[restaurantId]/reservation/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+=======
+>>>>>>> refs/remotes/origin/main
       "static/chunks/app/restaurant/[restaurantId]/reservation/page.js"
     ]
   }
