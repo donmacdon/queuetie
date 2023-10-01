@@ -12,6 +12,7 @@ import * as AlertDialog from "@radix-ui/react-alert-dialog";
 //Reservation Props
 interface ConfirmationProps {
   restaurantId: string;
+  branchId: string;
   reservationId: string;
   reservationTime: Date;
   adultCount: number;
@@ -22,6 +23,7 @@ interface ConfirmationProps {
 
 export const Confirmation = ({
   restaurantId,
+  branchId,
   reservationId,
   reservationTime,
   adultCount,
@@ -54,7 +56,7 @@ export const Confirmation = ({
     try{
         setIsLoading(true);
 
-        await axios.patch(`/api/restaurant/${restaurantId}/reservation/${reservationId}/confirm`);
+        await axios.patch(`/api/restaurant/${restaurantId}/${branchId}/reservation/${reservationId}/confirm`);
         
         router.refresh();
         router.push("/");
@@ -68,7 +70,7 @@ export const Confirmation = ({
       try{
           setIsLoadingCancel(true);
   
-          await axios.patch(`/api/restaurant/${restaurantId}/reservation/${reservationId}/cancel`);
+          await axios.patch(`/api/restaurant/${restaurantId}/${branchId}/reservation/${reservationId}/cancel`);
           
           router.refresh();
           router.push("/");
