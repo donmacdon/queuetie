@@ -21,11 +21,28 @@ model User {
 model Restaurant {
   id          String        @id @default(uuid())
   name        String
-  address     String
-  gracePeriod Int           @default(0)
+  tags        String
+  imageUrl    String
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
+  
+  branch Branch[]
+}
+
+model Branch {
+  id  String @id @default(uuid())
+  name String
+  address String
+  gracePeriod Int           @default(0)
+  restaurantId String
+  restaurant  Restaurant  @relation(fields:[restaurantId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
   reservation Reservation[]
+
+  @@index([restaurantId])
 }
 
 model Reservation {
@@ -36,12 +53,12 @@ model Reservation {
   isConfirmed     Boolean    @default(false)
   isCancelled     Boolean    @default(false)
   userId          String
-  restaurantId    String
+  branchId        String
   createdAt       DateTime   @default(now())
   updatedAt       DateTime   @updatedAt
-  restaurant      Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  branch          Branch     @relation(fields: [branchId], references: [id], onDelete: Cascade)
   profile         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
-  @@index([restaurantId])
+  @@index([branchId])
 }

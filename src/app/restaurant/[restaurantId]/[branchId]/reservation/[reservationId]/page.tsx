@@ -5,6 +5,7 @@ import { db } from "@/app/lib/db";
 interface ReservationPageProps {
   params: {
     restaurantId: string;
+    branchId: string;
     reservationId: string;
   }
 }
@@ -17,7 +18,11 @@ const ReservationPage = async({
     where: {
       id: params.reservationId,
     },include: {
-      restaurant: true,
+      branch: {
+        include:{
+          restaurant: true,
+        }
+      }
     }
   });
 
@@ -34,12 +39,13 @@ const ReservationPage = async({
     <>
       
       <Confirmation 
-        restaurantId={reservationData.restaurant.id}
+        restaurantId={reservationData.branch.restaurant.id}
+        branchId={reservationData.branch.id}
         reservationId={reservationData.id}
         reservationTime={reservationData.reservationTime}
         adultCount={reservationData.adultCount}
         childCount={reservationData?.childCount}
-        gracePeriod={reservationData?.restaurant.gracePeriod}
+        gracePeriod={reservationData?.branch.gracePeriod}
       />
     </>
    );

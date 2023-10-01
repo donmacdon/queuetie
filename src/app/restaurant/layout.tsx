@@ -1,4 +1,5 @@
 import { RestaurantInfo } from "@/app/components/restaurant/restaurant-info";
+import Image from "next/image";
 
 
 
@@ -8,14 +9,13 @@ const MainLayout = async({
     children: React.ReactNode;
 }) => {
     return ( 
-        <div className="h-full">
-            <div className="">
-              
-            </div>
-            <main className="md:pl-[72px] h-full">
-                <RestaurantInfo/>
+        <div className="w-full">
+          <div className="container mx-auto max-w-screen-2xl">
+            <RestaurantInfo/>
+            <main className="md:pl-[72px] h-full">    
                 {children}
             </main>
+          </div>
         </div>
      );
 }
