@@ -1,10 +1,4 @@
 {
-<<<<<<< HEAD
-  "/not-found": "app/not-found.js",
   "/page": "app/page.js",
-  "/restaurant/[restaurantId]/reservation/[reservationId]/page": "app/restaurant/[restaurantId]/reservation/[reservationId]/page.js",
-  "/api/restaurant/[restaurantId]/reservation/[reservationId]/cancel/route": "app/api/restaurant/[restaurantId]/reservation/[reservationId]/cancel/route.js"
-=======
-  "/restaurant/[restaurantId]/reservation/page": "app/restaurant/[restaurantId]/reservation/page.js"
->>>>>>> refs/remotes/origin/main
+  "/restaurant/[restaurantId]/reservation/[reservationId]/page": "app/restaurant/[restaurantId]/reservation/[reservationId]/page.js"
 }

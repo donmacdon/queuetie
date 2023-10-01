@@ -15,6 +15,10 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"),
+  require("tailwindcss-radix")({
+    // Default: `radix`
+    variantPrefix: "rdx",
+  })],
 }
 export default config
