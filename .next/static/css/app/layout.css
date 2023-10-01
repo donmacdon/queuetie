@@ -2327,6 +2327,10 @@ html {
 .inset-0 {
   inset: 0px;
 }
+.inset-y-0 {
+  top: 0px;
+  bottom: 0px;
+}
 .left-1\/2 {
   left: 50%;
 }
@@ -2338,6 +2342,9 @@ html {
 }
 .z-50 {
   z-index: 50;
+}
+.z-30 {
+  z-index: 30;
 }
 .mx-auto {
   margin-left: auto;
@@ -2367,6 +2374,9 @@ html {
 .grid {
   display: grid;
 }
+.hidden {
+  display: none;
+}
 .h-20 {
   height: 5rem;
 }
@@ -2375,6 +2385,9 @@ html {
 }
 .h-auto {
   height: auto;
+}
+.h-full {
+  height: 100%;
 }
 .min-h-full {
   min-height: 100%;
@@ -2396,6 +2409,9 @@ html {
 }
 .w-\[95vw\] {
   width: 95vw;
+}
+.w-\[72px\] {
+  width: 72px;
 }
 .max-w-none {
   max-width: none;
@@ -2719,8 +2735,16 @@ body {
 }
 @media (min-width: 768px) {
 
+  .md\:flex {
+    display: flex;
+  }
+
   .md\:w-full {
     width: 100%;
+  }
+
+  .md\:pl-\[72px\] {
+    padding-left: 72px;
   }
 }
 
