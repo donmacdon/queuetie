@@ -5,12 +5,10 @@ import Image from "next/image";
 
 interface RestaurantInfoProps{
   restaurant: Restaurant
-  branches: Branch[]
 }
 
 export const RestaurantInfo = ({
   restaurant,
-  branches
 }: RestaurantInfoProps) => {
   
   return (  
