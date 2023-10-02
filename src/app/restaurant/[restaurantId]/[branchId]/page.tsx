@@ -1,35 +1,30 @@
-import { BranchInfo } from "@/app/components/restaurant/branch-info";
-import { RestaurantInfo } from "@/app/components/restaurant/restaurant-info";
-import { db } from "@/app/lib/db";
-import Image from "next/image";
-import { redirect } from "next/navigation";
+"use client";
+
+import { usePathname } from "next/navigation";
+import { Button } from '@radix-ui/themes'
+import { CalendarDays } from "lucide-react";
+import Link from "next/link";
 
 
 
-export const BranchPage = async({
-    children,
+const BranchPage = ({
     params
 }: {
     children: React.ReactNode;
     params : { branchId: string;}
 }) => {
-
-    const branchInfo = await db.branch.findUnique({
-      where: {
-        id: params.branchId
-      }
-    });
-
-    if (!branchInfo){
-        return redirect("/");
-    }
-
+    const asPath = usePathname();
+    
     return ( 
         <>
-          <BranchInfo 
-            branch={branchInfo}
-          />
+            <Link href={`${asPath}/reservation`}>
+              <Button className="rounded btn-secondary px-2 py-1 flex gap-2">
+                <CalendarDays />
+                <span>Go to reservation</span>
+              </Button>
+            </Link>
         </>
      );
 }
  
+export default BranchPage;

@@ -1,20 +1,18 @@
 "use client"
 
-import { db } from "@/app/lib/db";
 import { Branch, Restaurant } from "@prisma/client";
 import Image from "next/image";
-import { ScrollArea }  from "@radix-ui/react-scroll-area"
+
 interface RestaurantInfoProps{
   restaurant: Restaurant
   branches: Branch[]
 }
 
-export const RestaurantInfo = async({
+export const RestaurantInfo = ({
   restaurant,
   branches
 }: RestaurantInfoProps) => {
   
-
   return (  
     <section className="flex flex-col gap-y-4">
               <div className="relative w-full mt-8">

@@ -6,6 +6,7 @@ import { ScrollArea }  from "@radix-ui/react-scroll-area"
 import * as Separator from '@radix-ui/react-separator';
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+
 interface BranchesListProps{
   branches: Branch[]
 }
@@ -23,7 +24,7 @@ export const BranchesList = ({
                   <ul>
                     {branches.map((branch, index)=> (
                         <li key={branch.id}>
-                          <Link key={branch.id} href={`${asPath}/${branch.id}/reservation`}>
+                          <Link key={branch.id} href={`${asPath}/${branch.id}`}>
                             <div className="flex py-4 hover:bg-zinc-300 transition items-center">
                               <Image
                                 src={branch.imageUrl}
