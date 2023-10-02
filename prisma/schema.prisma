@@ -33,6 +33,7 @@ model Branch {
   name         String
   address      String
   gracePeriod  Int           @default(0)
+  imageUrl String @default("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png")
   restaurantId String
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
