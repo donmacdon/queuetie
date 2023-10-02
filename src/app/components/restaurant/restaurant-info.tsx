@@ -1,22 +1,18 @@
+"use client"
+
 import { db } from "@/app/lib/db";
+import { Branch, Restaurant } from "@prisma/client";
 import Image from "next/image";
+import { ScrollArea }  from "@radix-ui/react-scroll-area"
+interface RestaurantInfoProps{
+  restaurant: Restaurant
+  branches: Branch[]
+}
 
-
-
-export const RestaurantInfo = async() => {
-
-  console.log("ASDJFDKSGKDSJGDKJGKJGKJGKJGKJGC")
-  // console.log(params.restaurantId)
-  const restaurant = {
-    imageUrl : "",
-    name: "",
-    tags: ""
-  }
-  // const restaurant = await db.restaurant.findFirst({
-  //   where: {
-  //     id: "test",
-  //   }
-  // })
+export const RestaurantInfo = async({
+  restaurant,
+  branches
+}: RestaurantInfoProps) => {
   
 
   return (  
@@ -35,7 +31,6 @@ export const RestaurantInfo = async() => {
                 <h1 className="text-2xl md:text-4xl font-medium">{restaurant?.name}</h1>
                 <p className="text-lg md:text-2xl">{restaurant?.tags}</p>
               </div>
-              <p className="text-xl md:text-3xl font-medium">Reservation</p>
       </section>
   );
 }
