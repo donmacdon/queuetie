@@ -6,6 +6,7 @@ async function getData() {
   }
 
   return res.json();
+  // hehe
 }
 
 export default async function Page() {

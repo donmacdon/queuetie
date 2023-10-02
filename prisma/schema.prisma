@@ -19,45 +19,42 @@ model User {
 }
 
 model Restaurant {
-  id          String        @id @default(uuid())
-  name        String
-  tags        String
-  imageUrl    String
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  
-  branch Branch[]
+  id        String   @id @default(uuid())
+  name      String
+  tags      String
+  imageUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  branch    Branch[]
 }
 
 model Branch {
-  id  String @id @default(uuid())
-  name String
-  address String
-  gracePeriod Int           @default(0)
+  id           String        @id @default(uuid())
+  name         String
+  address      String
+  gracePeriod  Int           @default(0)
   restaurantId String
-  restaurant  Restaurant  @relation(fields:[restaurantId], references: [id], onDelete: Cascade)
-
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-
-  reservation Reservation[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  restaurant   Restaurant    @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  reservation  Reservation[]
 
   @@index([restaurantId])
 }
 
 model Reservation {
-  id              String     @id @default(uuid())
+  id              String   @id @default(uuid())
   reservationTime DateTime
-  adultCount      Int        @default(1)
+  adultCount      Int      @default(1)
   childCount      Int?
-  isConfirmed     Boolean    @default(false)
-  isCancelled     Boolean    @default(false)
+  isConfirmed     Boolean  @default(false)
+  isCancelled     Boolean  @default(false)
   userId          String
   branchId        String
-  createdAt       DateTime   @default(now())
-  updatedAt       DateTime   @updatedAt
-  branch          Branch     @relation(fields: [branchId], references: [id], onDelete: Cascade)
-  profile         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  branch          Branch   @relation(fields: [branchId], references: [id], onDelete: Cascade)
+  profile         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([branchId])
