@@ -1,8 +1,7 @@
 import { Confirmation } from "@/app/components/ui/confirmation";
-import { Form } from "@/app/components/ui/form";
 import { db } from "@/app/lib/db";
 
-interface ReservationPageProps {
+interface ConfirmationPageProps {
   params: {
     restaurantId: string;
     branchId: string;
@@ -10,9 +9,9 @@ interface ReservationPageProps {
   }
 }
 
-const ReservationPage = async({
+const ConfirmationPage = async({
   params
-}: ReservationPageProps) => {
+}: ConfirmationPageProps) => {
 
   const reservationData = await db.reservation.findFirst({
     where: {
@@ -51,4 +50,4 @@ const ReservationPage = async({
    );
 }
  
-export default ReservationPage;
+export default ConfirmationPage;

@@ -96,7 +96,7 @@ export const Confirmation = ({
           </p>
           <div className="flex flex-1 flex-col text-sm items-center justify-center">
             <p>{numberOfAdults} Adults</p>
-            {numberOfChildren && <p>{numberOfChildren} Children</p>}
+            {numberOfChildren && (numberOfChildren > 0 && (<p>{numberOfChildren} Children</p>))}
           </div>
           <div className="card-actions flex flex-col justify-center items-center flex-1 mt-4 mb-4">
             <button disabled={isLoading} onClick={onConfirm} className="flex-grow flex w-full btn btn-primary">

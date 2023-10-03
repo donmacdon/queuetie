@@ -1,13 +1,26 @@
 import { Confirmation } from "@/app/components/ui/confirmation";
-import { Form } from "@/app/components/ui/form";
+import { FormUI } from "@/app/components/ui/form";
 import { db } from "@/app/lib/db";
 
-const ReservationPage = async() => {
+interface ReservationPageProps {
+  params: {
+    restaurantId: string;
+    branchId: string;
+    reservationId: string;
+  }
+}
+
+const ReservationPage = async({
+  params
+}: ReservationPageProps) => {
 
     return (
-      <Form />
+      <FormUI
+        restaurantId={params.restaurantId}
+        branchId={params.branchId}
+      />
     )
  
 }
- 
+  
 export default ReservationPage;
