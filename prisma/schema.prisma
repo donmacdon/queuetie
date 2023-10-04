@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Profile {
   id          String        @id @default(uuid())
   firstName   String
   lastName    String
@@ -16,6 +16,8 @@ model User {
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   reservation Reservation[]
+
+  user User?
 }
 
 model Restaurant {
@@ -26,6 +28,7 @@ model Restaurant {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   branch    Branch[]
+  user      User[]
 }
 
 model Branch {
@@ -33,7 +36,7 @@ model Branch {
   name         String
   address      String
   gracePeriod  Int           @default(0)
-  imageUrl String @default("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png")
+  imageUrl     String        @default("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png")
   restaurantId String
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
@@ -44,19 +47,43 @@ model Branch {
 }
 
 model Reservation {
-  id              String   @id @default(uuid())
+  id              String      @id @default(uuid())
   reservationTime DateTime
-  adultCount      Int      @default(1)
+  adultCount      Int         @default(1)
   childCount      Int?
-  isConfirmed     Boolean  @default(false)
-  isCancelled     Boolean  @default(false)
+  isConfirmed     Boolean     @default(false)
+  isCancelled     Boolean     @default(false)
   userId          String
   branchId        String
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  branch          Branch   @relation(fields: [branchId], references: [id], onDelete: Cascade)
-  profile         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  branch          Branch      @relation(fields: [branchId], references: [id], onDelete: Cascade)
+  profile         Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([branchId])
+}
+
+enum UserRole{
+  ADMIN
+  RESTAURANT_MANAGER
+  BRANCH_MANAGER
+  BRANCH_STAFF
+}
+
+model User{
+  id String @id @default(uuid())
+  role UserRole @default(BRANCH_STAFF)
+
+  profileId String @unique
+  profile Profile @relation(fields: [profileId], references: [id])
+
+  restaurantId String?
+  restaurant Restaurant? @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+
+  @@index([restaurantId])
 }
