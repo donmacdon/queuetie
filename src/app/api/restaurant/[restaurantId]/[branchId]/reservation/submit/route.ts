@@ -10,7 +10,7 @@ export async function POST(req: Request){
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    let profile = await db.userProfile.findFirst({
+    let profile = await db.profile.findFirst({
       where: {
         firstName: data.fName,
         lastName: data.lName,
@@ -19,7 +19,7 @@ export async function POST(req: Request){
     })
 
     if(!profile){
-      await db.userProfile.create({
+      await db.profile.create({
         data: {
           firstName: data.fName,
           lastName: data.lName,
@@ -28,7 +28,7 @@ export async function POST(req: Request){
         }
       })
 
-      profile = await db.userProfile.findFirst({
+      profile = await db.profile.findFirst({
         where: {
           firstName: data.fName,
           lastName: data.lName,
