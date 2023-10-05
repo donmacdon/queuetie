@@ -16,8 +16,6 @@ model Profile {
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   reservation Reservation[]
-
-  user User?
 }
 
 model Restaurant {
@@ -74,9 +72,6 @@ enum UserRole{
 model User{
   id String @id @default(uuid())
   role UserRole @default(BRANCH_STAFF)
-
-  profileId String @unique
-  profile Profile @relation(fields: [profileId], references: [id])
 
   restaurantId String?
   restaurant Restaurant? @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
