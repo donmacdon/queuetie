@@ -169,7 +169,7 @@ export const Confirmation = ({
             </AlertDialog.Root>
           </div>
           <p className="text-xs">
-            To hold your table please press "<span>Confirm</span>", and your
+            To hold your table please press &quot;<span>Confirm</span>&quot;, and your
             seat will be held for {seatHoldTime} minutes.
           </p>
         </div>

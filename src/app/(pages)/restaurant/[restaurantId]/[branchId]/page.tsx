@@ -7,12 +7,7 @@ import Link from "next/link";
 
 
 
-const BranchPage = ({
-    params
-}: {
-    children: React.ReactNode;
-    params : { branchId: string;}
-}) => {
+const BranchPage = () => {
     const asPath = usePathname();
     
     return ( 
