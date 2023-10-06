@@ -1,18 +1,20 @@
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"
+"use client"
+
 import { redirect } from "next/navigation"
-import LogoutButton from "@/app/components/ui/logout-button"
+import { useSession } from "next-auth/react"
+import { signOut } from "next-auth/react";
 
+export default function DashboardPage() {
+  const {data: session, status } = useSession()
 
-export default async function DashboardPage() {
-  const session = await getServerSession(authOptions)
   if(!session){
     redirect("/admin")
   }
+  console.log(session)
   return (
     <>
       <pre>{JSON.stringify(session, null, 2)}</pre>
-      <LogoutButton />
+      <button onClick={()=>signOut()}className="btn btn-primary">Logout</button>
     </>
   )
 }
