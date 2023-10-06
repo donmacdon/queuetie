@@ -8,18 +8,25 @@ import { signIn }  from "next-auth/react"
 
 export default function AdminPage() {
   const router = useRouter();
+
+  
   const [data, setData] = useState({
     username: "",
     password: ""
   })
-
   const userLogin = async (e: any) => {
     e.preventDefault();
-    signIn('credentials',{
+
+    const signInResponse = await signIn('credentials',{
       ...data,
       redirect: false,
     })
-    router.push("/admin/dashboard");
+
+    if (signInResponse?.ok) {
+      router.push("/admin/dashboard");
+    } else {
+      console.log("invalid login");
+    }
   }
   return (
     <>
@@ -78,8 +85,9 @@ export default function AdminPage() {
                   id="password"
                   name="password"
                   type="password"
-                  autoComplete="current-password"
                   required
+                  value={data.password}
+                  onChange={(e) => {setData({...data, password: e.target.value})}}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
